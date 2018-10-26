@@ -1,0 +1,22 @@
+<h1>Tasks</h1>
+
+
+<br>
+
+<div class="row">
+    <% @tasks.each do |task| %>
+        <div class="card text-white bg-primary col-sm-12 col-md-4">
+        <h3><%= task.name %></h3>
+
+          <div class="thumbnail">
+            <%= image_tag task.photo, class: "img-responsive" %>
+            <small><%= time_ago_in_words(task.created_at) %> ago</small>
+            <br>
+            <p><%= link_to 'Detalle', task, class: "btn btn-primary" %> </p>
+
+            
+          </div>
+        </div>
+        <br>
+    <% end %>
+</div>
