@@ -1,22 +1,26 @@
-<h1>Tasks</h1>
-
+<div class="jumbotron">
+  <h1 class="display-6">Ven, Te desafio a realizar estas pruebas dieciocheras!</h1>
+</div>
 
 <br>
 
 <div class="row">
-    <% @tasks.each do |task| %>
-        <div class="card text-white bg-primary col-sm-12 col-md-4">
-        <h3><%= task.name %></h3>
+  <% @tasks.users.each do |t| %>
+    <div class="card text-white bg-primary col-sm-12 col-md-4">
+      <h3><%= t.name %></h3>
 
-          <div class="thumbnail">
-            <%= image_tag task.photo, class: "img-responsive" %>
-            <small><%= time_ago_in_words(task.created_at) %> ago</small>
-            <br>
-            <p><%= link_to 'Detalle', task, class: "btn btn-primary" %> </p>
-
-            
-          </div>
-        </div>
+      <div class="thumbnail">
+        <%= image_tag t.photo, class: "img-fluid" %>
+        <small><%= time_ago_in_words t.updated_at %> ago</small>
         <br>
-    <% end %>
+        <% if @user.state? %>
+          <p><%= link_to "Completar", task_readies_path(t.id),method: :post, class: 'btn btn-primary'%></p>
+         <% else %>
+          <p><%= link_to "No listo", task_readies_path(t.id),method: :post, class: 'btn btn-danger'%></p>
+        <%end%>
+      </div>
+    </div>
+    <br>
+
+  <% end %>
 </div>
