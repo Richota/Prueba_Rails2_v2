@@ -5,20 +5,21 @@
 <br>
 
 <div class="row">
-  <% @tasks.each do |task| %>
+    <% @tasks.each do |completo| %>
     <div class="card text-white bg-primary col-sm-12 col-md-4">
-      <h3><%= task.name %></h3>
-
+      <h3><%= completo.name %></h3>
       <div class="thumbnail">
-        <%= image_tag task.photo, class: "img-fluid img-thumbnail" %>
-        <small><%= time_ago_in_words task.updated_at %> ago</small>
+        <%= image_tag completo.photo, class: "img-fluid img-thumbnail" %>
+        <small><%= time_ago_in_words completo.updated_at %> ago</small>
         <br>
-        <% if !@ready.state? %>
-        <%= link_to 'Completar', task_readies_path(task), class: "btn btn-success", method: :post %>
-        <% end %>
+        <p><%= link_to 'Detalle', completo, class: "btn btn-primary" %> </p>
+
+          <%= current_user.readies.state%>
+
       </div>
+
     </div>
+  <% end %>
     <br>
 
-  <% end %>
 </div>
