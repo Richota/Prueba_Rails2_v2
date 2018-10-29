@@ -1,20 +1,53 @@
 <h3><%= @task.name %></h3>
 
-
+<% i = 0 %>
 
   <%= image_tag @task.photo, class: "img-fluid img-thumbnail" %>
   <br>
-  <table>
-    <thead>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card bg-primary">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>  </th>
+              <th>Lista de usuarios Ok</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @task.users.each do |u| %>
+            <tr>
+              <td> <%= i + 1%></td>
+              <td>
+                <%= u.name %>
+              </td>
+            </tr>
+            <% end  %>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-    </thead>
-    <tbody>
-    <% @task.users.each do |u| %>
-      <tr>
-        <td>
-            <%= u.name %>
-        </td>
-      </tr>
-      <% end  %>
-    </tbody>
-  </table>
+    <div class="col-md-6">
+      <div class="card bg-primary">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Lista de usuarios Ok</th>
+              <th> Foto </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @task.users.each do |u| %>
+            <tr>
+              <td> <%= i + 1%></td>
+              <td>
+                <%= u.name %>
+              </td>
+            </tr>
+            <% end  %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
