@@ -14,8 +14,7 @@ class ReadiesController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:task_id])
-    @ready = Ready.destroy(task: @task, user: current_user)
+    @ready = Ready.destroy(params[:id])
     redirect_to root_path
   end
 end

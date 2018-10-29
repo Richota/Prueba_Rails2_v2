@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   get 'readies/create'
   resources :tasks, only: [:index, :show] do
-    resources :readies, only: [:create, :destroy]
+    resources :readies, only: [:create]
   end
+  resources :readies, only: [:destroy]
   root to: 'tasks#index'
   devise_for :users, controllers: {
         registrations: 'users/registrations'

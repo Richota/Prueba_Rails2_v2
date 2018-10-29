@@ -1,6 +1,5 @@
 <h3><%= @task.name %></h3>
 
-<% i = 0 %>
 <div class="jumbotron text-center">
   <%= image_tag @task.photo, class: "img-fluid img-thumbnail" %>
 </div>
@@ -10,16 +9,16 @@
       <div class="card bg-primary">
         <table class="table table-hover">
           <thead>
-            <tr>
-              <th>  </th>
-              <th>Lista de usuarios Ok</th>
+            <tr class="table-active">
+              <th scope="col">  </th>
+              <th scope="col">Lista de usuarios Ok</th>
             </tr>
           </thead>
           <tbody>
             <% @task.users.each do |u| %>
-            <tr>
-              <td> <%= i + 1%></td>
-              <td>
+            <tr class="table-active">
+              <th scope="row"></th>
+              <td class="text-center">
                 <%= u.name %>
               </td>
             </tr>
@@ -39,7 +38,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @task.users.each do |u| %>
+            <% @task.users.order(updated_at: :asc).limit(5).each do |u| %>
             <tr>
               <td> <%= image_tag u.photo, class: "img-fluid img-thumbnail"%></td>
               <td>

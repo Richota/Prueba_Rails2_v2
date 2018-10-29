@@ -11,14 +11,14 @@
           <%= image_tag task.photo, class: "img-fluid img-thumbnail" %>
           <br>
           <p><%= link_to 'Detalle', task, class: "btn btn-primary" %> </p>
-            <% if !@readies.exists?(user_id: current_user.id, task_id: task.id) %>
 
-            <%= link_to 'Completar', task_readies_path(task.id), method: :post, class: "btn btn-success" %>
+          <% if !@readies.exists?(user_id: current_user.id, task_id: task.id) %>
+
+          <%= link_to 'Completar', task_readies_path(task.id), method: :post, class: "btn btn-success" %>
           <% else %>
-          <%= link_to "Borrar", task_ready_path(task.current_user.readies.last.id), method: :delete, data: { confirm: 'Estás seguro que desea eliminar?' }, class: "btn btn-primary" %>
+          <%= link_to "Deshacer", ready_path(@readies.find_by(user_id: current_user.id, task_id: task.id)), method: :delete, data: { confirm: 'Estás seguro que desea deshacer la tarea?' }, class: "btn btn-danger" %>
           <p>Completado!</p>
           <% end %>
-
       </div>
   <% end %>
     <br>
