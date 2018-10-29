@@ -2,6 +2,7 @@ class ReadiesController < ApplicationController
   before_action :authenticate_user!
 
   def create
+
     @task = Task.find(params[:task_id])
     @ready = Ready.new(task: @task, user: current_user)
     @ready.state = !@ready.state
@@ -10,5 +11,11 @@ class ReadiesController < ApplicationController
     else
       redirect_to root_path, alert: 'NO se ha cambiado el estado!'
     end
+  end
+
+  def destroy
+    @ready = Ready.find(params[:id])
+    @ready.destroy
+    redirect_to root_path
   end
 end

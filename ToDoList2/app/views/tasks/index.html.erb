@@ -5,20 +5,26 @@
 <br>
 
 <div class="row">
-    <% @tasks.each do |completo| %>
-    <div class="card text-white bg-primary col-sm-12 col-md-4">
-      <h3><%= completo.name %></h3>
-      <div class="thumbnail">
-        <%= image_tag completo.photo, class: "img-fluid img-thumbnail" %>
-        <small><%= time_ago_in_words completo.updated_at %> ago</small>
-        <br>
-        <p><%= link_to 'Detalle', completo, class: "btn btn-primary" %> </p>
+    <% @tasks.each do |task| %>
+      <div class="card text-white bg-primary col-sm-12 col-md-4">
+        <h3><%= task.name %></h3>
+        <div class="thumbnail">
+          <%= image_tag task.photo, class: "img-fluid img-thumbnail" %>
+          <small><%= time_ago_in_words task.updated_at %> ago</small>
+          <br>
+          <p><%= link_to 'Detalle', task, class: "btn btn-primary" %> </p>
 
-          <%= current_user.readies.state%>
+        </div>
+            <% if !@readies.exists?(user_id: current_user.id, task_id: task.id) %>
+
+            <%= link_to 'Completar', task_readies_path(task.id), method: :post, class: "btn btn-success" %>
+          <% else %>
+          <p>Completado!</p>
+          <% end %>
+
+
 
       </div>
-
-    </div>
   <% end %>
     <br>
 

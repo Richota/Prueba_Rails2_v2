@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'readies/create'
   resources :tasks, only: [:index, :show] do
-    resources :readies, only: :create
+    resources :readies, only: [:create, :destroy]
   end
   root to: 'tasks#index'
   devise_for :users, controllers: {
